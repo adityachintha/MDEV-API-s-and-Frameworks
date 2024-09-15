@@ -1,0 +1,70 @@
+body {
+  background-color: rgb(251, 235, 215);
+  align-content: center;
+}
+h1 {
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 10px;
+}
+#gifContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+#searchButton {
+  background-color: coral;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  width: 130px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#clearButton {
+  background-color: rgb(251, 239, 235);
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+  width: 130px;
+  font-weight: 600;
+  border: 1;
+  border-color: coral;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#searchInput {
+  background-color: white;
+  font-size: 14px;
+  width: 260px;
+  padding: 20px;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#order {
+  display: flex;
+  flex-direction: row;
+}
+
+h3 {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgb(83, 83, 83);
+  font-family: Arial, Helvetica, sans-serif;
+}
