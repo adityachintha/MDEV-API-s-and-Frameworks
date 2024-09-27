@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/adityachintha/MDEV-API-s-and-Frameworks/issues"
   },
-  "homepage": "https://github.com/adityachintha/MDEV-API-s-and-Frameworks#readme"
+  "homepage": "https://github.com/adityachintha/MDEV-API-s-and-Frameworks#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "nodemon": "^3.1.7"
+  }
 }
