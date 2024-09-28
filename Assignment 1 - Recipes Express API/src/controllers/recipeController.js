@@ -29,3 +29,5 @@ const addRecipesList = async (res, req) => {
     res.status(500).json({ message: error.message });
   }
 };
+//exporting the module exports
+module.exports = { addRecipesList };
