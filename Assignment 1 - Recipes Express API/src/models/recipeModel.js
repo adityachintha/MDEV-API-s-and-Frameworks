@@ -16,4 +16,5 @@ const RecipeSchema = new mongoose.Schema({
   cuisine: { type: String, required: true },
   description: { type: String, required: true },
   photoLink: { type: String, required: true },
+  averageRating: { type: Number, required: true },
 });
