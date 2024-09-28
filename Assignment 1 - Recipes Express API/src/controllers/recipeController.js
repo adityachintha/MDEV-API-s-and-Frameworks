@@ -8,3 +8,8 @@
 const Recipe = require("../models/recipeModel");
 const fs = require("fs");
 const path = require("path");
+
+const addRecipesList = async (res, req) => {
+  try {
+  } catch (error) {}
+};
