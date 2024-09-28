@@ -11,5 +11,8 @@ const path = require("path");
 
 const addRecipesList = async (res, req) => {
   try {
+    // load the json file
+    const jsonFile = path.join(_dirname, "./recipes_list.json");
+    const data = fs.readFilesync(jsonFile, "utf-8");
   } catch (error) {}
 };
