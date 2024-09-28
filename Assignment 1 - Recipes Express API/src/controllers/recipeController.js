@@ -9,6 +9,14 @@ const Recipe = require("../models/recipeModel");
 const fs = require("fs");
 const path = require("path");
 
+// function to display the recipes
+
+const getRecipes = async (req, res) => {
+  try {
+  } catch {}
+};
+
+// function to create recipes in the database
 const addRecipesList = async (req, res) => {
   try {
     // load the json file
