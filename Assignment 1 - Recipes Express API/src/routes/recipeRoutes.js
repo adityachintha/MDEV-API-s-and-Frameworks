@@ -9,3 +9,6 @@ const express = require("express");
 const router = express.Router();
 
 const { addRecipesList } = require("../controllers/recipeController");
+
+//route to create recipes from JSON file
+router.post("/recipes/import", addRecipesList);
