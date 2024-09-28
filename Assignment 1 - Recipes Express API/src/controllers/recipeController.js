@@ -13,7 +13,11 @@ const path = require("path");
 
 const getRecipes = async (req, res) => {
   try {
-  } catch {}
+    const recipes = await Recipe.find();
+    res.json(recipes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 // function to create recipes in the database
@@ -38,4 +42,4 @@ const addRecipesList = async (req, res) => {
   }
 };
 //exporting the module exports
-module.exports = { addRecipesList };
+module.exports = { addRecipesList, getRecipes };
