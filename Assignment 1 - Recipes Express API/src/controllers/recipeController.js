@@ -15,5 +15,14 @@ const addRecipesList = async (res, req) => {
     const jsonFile = path.join(_dirname, "./recipes_list.json");
     const data = fs.readFilesync(jsonFile, "utf-8");
     const recipes = JSON.parse(data);
+
+    // insert multiple documents into Mongo DB
+    await Recipe.insertMany(recipes);
+
+    res
+      .status(201)
+      .json({
+        message: "Recipes have been successfully added to the database",
+      });
   } catch (error) {}
 };
