@@ -9,11 +9,11 @@ const Recipe = require("../models/recipeModel");
 const fs = require("fs");
 const path = require("path");
 
-const addRecipesList = async (res, req) => {
+const addRecipesList = async (req, res) => {
   try {
     // load the json file
-    const jsonFile = path.join(_dirname, "./recipes_list.json");
-    const data = fs.readFilesync(jsonFile, "utf-8");
+    const jsonFile = path.join("recipes_list.json");
+    const data = fs.readFileSync(jsonFile, "utf-8");
     const recipes = JSON.parse(data);
 
     // insert multiple documents into Mongo DB

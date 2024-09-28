@@ -8,6 +8,8 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 
+const recipeRoutes = require("./src/routes/recipeRoutes");
+
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
@@ -26,9 +28,7 @@ mongoose
   });
 
 //Define a route
-app.get("/", (req, res) => {
-  res.send("Welcome to my Recipe Assignment 1");
-});
+app.use("/", recipeRoutes);
 
 // setting a port
 const port = 4000;
