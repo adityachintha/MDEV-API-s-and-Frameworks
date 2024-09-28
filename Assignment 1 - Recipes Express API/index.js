@@ -17,7 +17,6 @@ dotenv.config({ path: "./config.env" });
 const app = express();
 
 //Connection to mongodb Atlas
-
 mongoose
   .connect(process.env.MONGOURI)
   .then(() => {
