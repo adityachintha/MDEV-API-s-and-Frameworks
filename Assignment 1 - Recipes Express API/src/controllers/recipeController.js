@@ -19,10 +19,13 @@ const addRecipesList = async (res, req) => {
     // insert multiple documents into Mongo DB
     await Recipe.insertMany(recipes);
 
-    res
-      .status(201)
-      .json({
-        message: "Recipes have been successfully added to the database",
-      });
-  } catch (error) {}
+    res.status(201).json({
+      message: "Recipes have been successfully added to the database",
+    });
+
+    // adding error status and message
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
 };
