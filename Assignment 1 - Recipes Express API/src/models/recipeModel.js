@@ -18,3 +18,6 @@ const RecipeSchema = new mongoose.Schema({
   photoLink: { type: String, required: true },
   averageRating: { type: Number, required: true },
 });
+
+//exporting the schema
+module.exports = mongoose.model("Recipe", RecipeSchema);
