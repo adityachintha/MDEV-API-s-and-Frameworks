@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
+
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
@@ -21,7 +22,7 @@ mongoose
 
 //Define a route
 app.get("/", (req, res) => {
-  res.send("Welcome to my first project");
+  res.send("Welcome to my Recipe Assignment 1");
 });
 
 // setting a port
