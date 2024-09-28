@@ -1,9 +1,21 @@
 // import express
 const express = require("express");
 const bodyparser = require("body-parser");
+const mongoose = require("mongoose");
 
 // Initialize the express app
 const app = express();
+
+//Connection to mongodb Atlas
+
+mongoose
+  .connect(process.env.MONGOURI)
+  .then(() => {
+    console.log("Connected to mongo db");
+  })
+  .catch((error) => {
+    console.error("error connecting to mongodb", error);
+  });
 
 //Define a route
 app.get("/", (req, res) => {
