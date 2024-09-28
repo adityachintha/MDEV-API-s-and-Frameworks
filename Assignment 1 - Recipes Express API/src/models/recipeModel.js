@@ -15,4 +15,5 @@ const RecipeSchema = new mongoose.Schema({
   difficulty: { type: String, required: true },
   cuisine: { type: String, required: true },
   description: { type: String, required: true },
+  photoLink: { type: String, required: true },
 });
