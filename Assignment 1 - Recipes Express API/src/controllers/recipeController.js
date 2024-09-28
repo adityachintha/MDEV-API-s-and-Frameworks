@@ -14,5 +14,6 @@ const addRecipesList = async (res, req) => {
     // load the json file
     const jsonFile = path.join(_dirname, "./recipes_list.json");
     const data = fs.readFilesync(jsonFile, "utf-8");
+    const recipes = JSON.parse(data);
   } catch (error) {}
 };
