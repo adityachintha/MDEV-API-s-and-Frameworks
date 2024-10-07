@@ -20,6 +20,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // set the PORT
 const port = 3000;
 
+//Connect the MongoDB Atlash
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Connected to Mongo DB");
+  })
+  .catch((error) => {
+    console.log("Error connecting to Mongo DB", error);
+  });
+
 //Define a route
 app.get("/", (req, res) => {
   res.send("Welcome to my first program of nodejs express");
