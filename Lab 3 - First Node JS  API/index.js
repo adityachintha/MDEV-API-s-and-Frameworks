@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 
 // set the PORT
-const port = 5000;
+const port = 3000;
 
 //start the server
 app.listen(port, () => {
