@@ -5,9 +5,14 @@
 
 //import expresss
 const express = require("express");
+const bodyParser = require("body-parser");
 
 //initialize the express app
 const app = express();
+
+//middleware to parse-json body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // set the PORT
 const port = 3000;
