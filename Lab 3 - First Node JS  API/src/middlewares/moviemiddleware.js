@@ -10,3 +10,14 @@ const logger = (req, res, next) => {
   );
   next();
 };
+
+// validating for creation or updating a movie
+const validateMovie = (req, res, next) => {
+  const { title, studio, year, genres, directors } = req.body;
+  if (!title || !studio || !year || !genres || !directors) {
+    return res
+      .status(400)
+      .send("Missing required fields - title, studio, year, genres, directors");
+  }
+  next();
+};
