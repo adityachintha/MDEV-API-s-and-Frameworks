@@ -13,4 +13,8 @@ const moviesSchema = new schema({
   title: { type: String, required: true },
   studio: { type: String, required: true },
   genres: { type: [String], required: true },
+  directors: { type: [String], required: true },
+  writers: { type: [String], required: true },
+  actors: { type: [String], required: true },
+  year: { type: Number, required: true },
 });
