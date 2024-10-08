@@ -21,3 +21,8 @@ const validateMovie = (req, res, next) => {
   }
   next();
 };
+
+//Middleware to handle 404
+const handleNotFound = (req, res, next) => {
+  res.status(404).send("Page not found/ something went wrong");
+};
