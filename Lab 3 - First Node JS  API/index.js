@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
+const fs = require(fs);
 
 //initialize the express app
 const app = express();
