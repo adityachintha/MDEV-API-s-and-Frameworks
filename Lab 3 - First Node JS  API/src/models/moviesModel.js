@@ -11,4 +11,6 @@ const schema = mongoose.schema;
 const moviesSchema = new schema({
   movieID: { type: String },
   title: { type: String, required: true },
+  studio: { type: String, required: true },
+  genres: { type: [String], required: true },
 });
