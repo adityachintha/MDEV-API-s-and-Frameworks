@@ -10,18 +10,18 @@ const { Schema } = mongoose;
 
 //Schema for the Movies
 const moviesSchema = new Schema({
-  movieID: { type: String, required: true },
-  title: { type: String, required: true },
-  studio: { type: String, required: true },
-  genres: { type: [String], required: true },
-  directors: { type: [String], required: true },
-  writers: { type: [String], required: true },
-  actors: { type: [String], required: true },
-  year: { type: Number, required: true },
-  length: { type: Number, required: true },
-  shortDescription: { type: String, required: true },
-  mpaRating: { type: String, required: true },
-  criticsRating: { type: Number, required: true },
+  movieID: { type: String },
+  title: { type: String },
+  studio: { type: String },
+  genres: { type: [String] },
+  directors: { type: [String] },
+  writers: { type: [String] },
+  actors: { type: [String] },
+  year: { type: Number },
+  length: { type: Number },
+  shortDescription: { type: String },
+  mpaRating: { type: String },
+  criticsRating: { type: Number },
 });
 
 //Movies Model
