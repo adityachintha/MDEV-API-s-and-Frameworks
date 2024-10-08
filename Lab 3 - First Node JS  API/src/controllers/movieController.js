@@ -17,3 +17,14 @@ exports.importMovies = async (req, res) => {
     console.error(e);
   }
 };
+
+//Function to Reall all the movies
+exports.getMovies = async (req, res) => {
+  try {
+    const movies = await Movies.find(); //Find all the movies
+    res.status(200).json(Movies);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error Retreving Movies");
+  }
+};
