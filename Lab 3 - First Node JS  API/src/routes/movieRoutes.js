@@ -23,5 +23,8 @@ router.get("/:id", movieController.getMovieById);
 //Route to update the movie
 router.put("/update/:id", movieController.updateMovie);
 
+//Route to delte the movie
+router.delete("/delete/:id", movieController.deleteMovie);
+
 //export
 module.exports = router;
