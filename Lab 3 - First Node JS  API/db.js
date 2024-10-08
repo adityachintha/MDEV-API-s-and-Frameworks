@@ -14,3 +14,4 @@ const InitiateMongoServer = async () => {
 };
 
 //Export
+module.export = InitiateMongoServer;
