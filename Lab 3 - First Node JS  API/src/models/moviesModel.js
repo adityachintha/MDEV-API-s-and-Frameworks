@@ -7,3 +7,7 @@
 
 const mongoose = require("mongoose");
 const schema = mongoose.schema;
+
+const moviesSchema = new schema({
+  movieID: { type: String },
+});
