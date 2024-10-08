@@ -11,6 +11,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
 const movieRoutes = require("./src/routes/movieRoutes");
+const { logger, handleNotFound } = require("./src/middlewares/movieMiddleware");
 
 //initialize the express app
 const app = express();
@@ -33,6 +34,11 @@ app.get("/", (req, res) => {
 
 //use the route
 app.use("/movies", movieRoutes);
+
+
+//middleware
+app.use(logger); // for logger
+app.use(handleNotFound); // for handling errors
 
 //start the server
 app.listen(port, () => {
