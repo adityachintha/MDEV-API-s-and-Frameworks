@@ -19,7 +19,7 @@ exports.importMovies = async (req, res) => {
   }
 };
 
-//Function to Reall all the movies
+//Function to Read all the movies
 exports.getMovies = async (req, res) => {
   try {
     const movies = await Movies.find(); //Find all the movies
@@ -27,5 +27,17 @@ exports.getMovies = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).send("Error Retreving Movies");
+  }
+};
+
+//Function to create a new movie
+exports.createMovies = async (req, res) => {
+  try {
+    const newMovie = new Movies(req.body);
+    await newMovie.save();
+    res.status(201).json(newMovie);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error Creating Movie");
   }
 };
