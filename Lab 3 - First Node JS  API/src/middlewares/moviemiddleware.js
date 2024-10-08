@@ -26,3 +26,6 @@ const validateMovie = (req, res, next) => {
 const handleNotFound = (req, res, next) => {
   res.status(404).send("Page not found/ something went wrong");
 };
+
+//export
+module.exports = { logger, validateMovie, handleNotFound };
