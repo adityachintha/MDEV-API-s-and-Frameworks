@@ -24,6 +24,8 @@ initiateMongoServer();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(logger); // for logger
+
 // set the PORT
 const port = 3000;
 
@@ -35,9 +37,6 @@ app.get("/", (req, res) => {
 //use the route
 app.use("/movies", movieRoutes);
 
-
-//middleware
-app.use(logger); // for logger
 app.use(handleNotFound); // for handling errors
 
 //start the server
