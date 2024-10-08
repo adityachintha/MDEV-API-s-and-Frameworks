@@ -8,6 +8,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.schema;
 
+//Schema for the Movies
 const moviesSchema = new schema({
   movieID: { type: String },
   title: { type: String, required: true },
@@ -22,3 +23,9 @@ const moviesSchema = new schema({
   mpaRating: { type: String, required: true },
   criticsRating: { type: Number, required: true },
 });
+
+//Movies Model
+const Movies = mongoose.model("movies", moviesSchema);
+
+//exporting the movies model
+module.exports = Movies;
