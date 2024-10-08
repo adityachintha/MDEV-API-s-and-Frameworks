@@ -6,10 +6,10 @@
 //import
 
 const mongoose = require("mongoose");
-const schema = mongoose.schema;
+const { Schema } = mongoose;
 
 //Schema for the Movies
-const moviesSchema = new schema({
+const moviesSchema = new Schema({
   movieID: { type: String },
   title: { type: String, required: true },
   studio: { type: String, required: true },
