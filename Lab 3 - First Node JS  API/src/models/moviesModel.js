@@ -10,4 +10,5 @@ const schema = mongoose.schema;
 
 const moviesSchema = new schema({
   movieID: { type: String },
+  title: { type: String, required: true },
 });
