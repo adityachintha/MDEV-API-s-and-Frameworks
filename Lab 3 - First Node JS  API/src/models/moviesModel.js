@@ -10,7 +10,7 @@ const { Schema } = mongoose;
 
 //Schema for the Movies
 const moviesSchema = new Schema({
-  movieID: { type: String },
+  movieID: { type: String, required: true },
   title: { type: String, required: true },
   studio: { type: String, required: true },
   genres: { type: [String], required: true },

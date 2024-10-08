@@ -9,7 +9,7 @@ const router = express.Router();
 const movieController = require("../controllers/movieController");
 
 //Route to Import Movies
-router.post("./import", movieController.importMovies);
+router.post("/import", movieController.importMovies);
 
 //export
 module.exports = router;
