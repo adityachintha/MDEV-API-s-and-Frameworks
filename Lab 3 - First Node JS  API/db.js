@@ -1,6 +1,8 @@
 //Import
 const { default: mongoose } = require("mongoose");
 const MONGOURI = process.env.MONGO_URI;
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
 //Initiating the server
 const InitiateMongoServer = async () => {

@@ -10,9 +10,13 @@ const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
+const InitiateMongoServer = require("./db");
 
 //initialize the express app
 const app = express();
+
+//Initilize the Databse Connection
+InitiateMongoServer();
 
 //middleware to parse-json body
 app.use(bodyParser.json());
