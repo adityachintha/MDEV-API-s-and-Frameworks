@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
-const fs = require(fs);
+const fs = require("fs");
 
 //initialize the express app
 const app = express();
@@ -17,6 +17,9 @@ const app = express();
 //middleware to parse-json body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//read the data from Movies Json
+const data = JSON.parse(fs.readFileSync("./movies.json", "utf-8"));
 
 // set the PORT
 const port = 3000;
