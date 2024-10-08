@@ -55,3 +55,21 @@ exports.getMovieById = async (req, res) => {
     res.status(500).send("Error Findding Movie by ID");
   }
 };
+
+//Update a Movie
+exports.updateMovie = async (req, res) => {
+  try {
+    const updateMovie = await Movies.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updateMovie) {
+      return res.status(404).send("Movie is not updated");
+    }
+    res.status(201).json(updateMovie);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error Updating the movie");
+  }
+};
