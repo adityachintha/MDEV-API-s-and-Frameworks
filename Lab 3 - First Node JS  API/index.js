@@ -22,9 +22,6 @@ initiateMongoServer();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//read the data from Movies Json
-const data = JSON.parse(fs.readFileSync("./movies.json", "utf-8"));
-
 // set the PORT
 const port = 3000;
 
