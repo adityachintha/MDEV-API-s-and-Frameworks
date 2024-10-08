@@ -17,5 +17,8 @@ router.get("/", movieController.getMovies);
 //Route to create a new movie
 router.post("/create", movieController.createMovies);
 
+//Route to find a movie by ID
+router.get("/:id", movieController.getMovieById);
+
 //export
 module.exports = router;
