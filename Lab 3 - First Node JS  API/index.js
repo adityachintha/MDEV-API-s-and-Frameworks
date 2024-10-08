@@ -10,6 +10,7 @@ const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
+const movieRoutes = require("./src/routes/movieRoutes");
 
 //initialize the express app
 const app = express();
@@ -29,6 +30,9 @@ const port = 3000;
 app.get("/", (req, res) => {
   res.send("Welcome to my first program of nodejs express");
 });
+
+//use the route
+app.use("/movies", movieRoutes);
 
 //start the server
 app.listen(port, () => {
