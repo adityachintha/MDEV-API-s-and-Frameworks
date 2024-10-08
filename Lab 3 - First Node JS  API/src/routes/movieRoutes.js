@@ -11,5 +11,8 @@ const movieController = require("../controllers/movieController");
 //Route to Import Movies
 router.post("/import", movieController.importMovies);
 
+//Route to get all movies
+router.get("/", movieController.getMovies);
+
 //export
 module.exports = router;
