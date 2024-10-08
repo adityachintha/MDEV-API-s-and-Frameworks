@@ -14,5 +14,8 @@ router.post("/import", movieController.importMovies);
 //Route to get all movies
 router.get("/", movieController.getMovies);
 
+//Route to create a new movie
+router.post("/", movieController.createMovies);
+
 //export
 module.exports = router;
