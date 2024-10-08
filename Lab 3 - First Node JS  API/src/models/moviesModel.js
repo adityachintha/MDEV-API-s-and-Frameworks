@@ -17,4 +17,8 @@ const moviesSchema = new schema({
   writers: { type: [String], required: true },
   actors: { type: [String], required: true },
   year: { type: Number, required: true },
+  length: { type: Number, required: true },
+  shortDescription: { type: String, required: true },
+  mpaRating: { type: String, required: true },
+  criticsRating: { type: Number, required: true },
 });
