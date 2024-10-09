@@ -22,7 +22,12 @@ exports.importMovies = async (req, res) => {
 //Function to Read all the movies
 exports.getMovies = async (req, res) => {
   try {
-    const movies = await Movies.find(); //Find all the movies
+    const title = req.query;
+    let filter = {};
+    if (title) {
+      filter.title = { $regex: title, $options: "i" }; // search with case-insensitive
+    }
+    const movies = await Movies.find(filter); //Find movies based on filter
     res.status(200).json(movies);
   } catch (e) {
     console.error(e);
