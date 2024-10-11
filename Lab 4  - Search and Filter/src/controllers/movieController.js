@@ -23,9 +23,14 @@ exports.importMovies = async (req, res) => {
 exports.getMovies = async (req, res) => {
   try {
     const title = req.query.title;
+    const genres = req.query.genres;
     let filter = {};
     if (typeof title === "string" && title.trim() !== "") {
       filter.title = new RegExp(req.query.title, "i"); // adding query title to filter the case -insensitive
+    }
+    // adding conditions to trim spaces and type to be string
+    if (typeof genres === "string" && genres.trim() !== "") {
+      filter.genres = new RegExp(genres, "i"); // Filtering genres
     }
     const movies = await Movies.find(filter); //Find movies based on filter
     res.status(200).json(movies);
