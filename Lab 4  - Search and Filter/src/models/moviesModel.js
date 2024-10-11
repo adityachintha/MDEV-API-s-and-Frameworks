@@ -1,7 +1,7 @@
 // File Name - movieModel.js
 // Student Name - Aditya Chintha
 // Student ID - 200595829
-// Data - 8th October 2024
+// Date - 8th October 2024
 
 //import
 

@@ -1,7 +1,7 @@
 // File Name - movieController.js
 // Student Name - Aditya Chintha
 // Student ID - 200595829
-// Data - 8th October 2024
+// Date - 8th October 2024
 
 //import the movies
 const Movies = require("../models/moviesModel");
@@ -25,6 +25,7 @@ exports.getMovies = async (req, res) => {
     const title = req.query.title;
     const genres = req.query.genres;
     const year = req.query.year;
+    //creating an object
     let filter = {};
     if (typeof title === "string" && title.trim() !== "") {
       filter.title = new RegExp(req.query.title, "i"); // adding query title to filter the case -insensitive
