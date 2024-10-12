@@ -3,42 +3,18 @@
 // Student ID - 200595829
 // Date - 11 October 2024
 
-//Import recipe model, fs and path
+//Import recipe model, fs
 const Recipe = require("../models/recipeModel");
 const fs = require("fs");
-const path = require("path");
 
-//Function to display the recipes
-const getRecipes = async (req, res) => {
+//Function to Import recipes
+exports.importRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.find();
-    res.json(recipes);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    const data = JSON.parse(fs.readFileSync("./recipes_list.json", "utf-8"));
+    await Recipe.insertMany(data); // Import data into Mongo db
+    res.status(200).send("Recipes imported to database successfully");
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error Importing Recipes to database");
   }
 };
-
-//Function to create recipes in the database
-const addRecipesList = async (req, res) => {
-  try {
-    // load the json file
-    const jsonFile = path.join("recipes_list.json");
-    const data = fs.readFileSync(jsonFile, "utf-8");
-    const recipes = JSON.parse(data);
-
-    // insert multiple documents into Mongo DB
-    await Recipe.insertMany(recipes);
-
-    res.status(201).json({
-      message: "Recipes have been successfully added to the database",
-    });
-
-    // adding error status and message
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: error.message });
-  }
-};
-
-//exporting the module exports
-module.exports = { addRecipesList, getRecipes };
