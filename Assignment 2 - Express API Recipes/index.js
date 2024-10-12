@@ -3,7 +3,7 @@
 // Student ID - 200595829
 // Date - 11 October 2024
 
-// import express
+//Importing modules
 const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
@@ -18,13 +18,13 @@ const app = express();
 const mongoServer = require("./db");
 mongoServer();
 
-//Define a route
+//Defining a root route
 app.use("/", recipeRoutes);
 
-// setting a port
+//Setting a port
 const port = 4000;
 
-// start the server
+//Start the server
 app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}`);
 });
