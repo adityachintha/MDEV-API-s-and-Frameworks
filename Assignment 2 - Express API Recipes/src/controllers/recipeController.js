@@ -58,3 +58,22 @@ exports.createNewrecipes = async (req, res) => {
     res.status(500).send("Error creating recipe");
   }
 };
+
+//Function to update a existing recipe
+exports.updateRecipe = async (req, res) => {
+  try {
+    const updateRecipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updateRecipe) {
+      return res.status(404).send("Recipes is not Update and has a error");
+    }
+    res.status(201).json(updateRecipe);
+    console.log("Recipe is update", updateRecipe);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error updating recipe");
+  }
+};
