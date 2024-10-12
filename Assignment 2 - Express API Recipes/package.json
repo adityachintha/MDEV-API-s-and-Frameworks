@@ -1,0 +1,27 @@
+{
+  "name": "assignment-1---recipes-express-api",
+  "version": "1.0.0",
+  "description": "this is th first project for express node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityachintha/MDEV-API-s-and-Frameworks.git"
+  },
+  "author": "Aditya Chintha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityachintha/MDEV-API-s-and-Frameworks/issues"
+  },
+  "homepage": "https://github.com/adityachintha/MDEV-API-s-and-Frameworks#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "nodemon": "^3.1.7"
+  }
+}
