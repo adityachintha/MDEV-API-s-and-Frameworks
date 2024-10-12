@@ -3,8 +3,7 @@
 // Student ID - 200595829
 // Date - 11 October 2024
 
-// Import
-
+// Importing Modules
 const { default: mongoose } = require("mongoose");
 const databaseUrl = process.env.MONGOURI;
 const dotenv = require("dotenv");
