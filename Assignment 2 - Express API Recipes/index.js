@@ -5,7 +5,7 @@
 
 //Importing modules
 const express = require("express");
-const bodyparser = require("body-parser");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const recipeRoutes = require("./src/routes/recipeRoutes");
 const dotenv = require("dotenv");
@@ -25,6 +25,9 @@ mongoServer();
 //Middleware to parse-json body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Middleware to use Logger
+app.use(logger);
 
 //Defining a root route
 app.get("/", (req, res) => {
