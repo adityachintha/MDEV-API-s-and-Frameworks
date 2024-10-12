@@ -6,7 +6,7 @@
 //Importing modules
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const fs = require("fs");
 const recipeRoutes = require("./src/routes/recipeRoutes");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
