@@ -13,4 +13,7 @@ const recipeController = require("../controllers/recipeController");
 //Route to import recipes from JSON file
 router.post("/import", recipeController.importRecipes);
 
+// Route to read all the recipes
+router.get("/", recipeController.readRecipes);
+
 module.exports = router;
