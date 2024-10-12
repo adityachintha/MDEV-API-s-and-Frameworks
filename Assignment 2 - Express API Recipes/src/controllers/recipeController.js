@@ -3,14 +3,12 @@
 // Student ID - 200595829
 // Date - 11 October 2024
 
-//import recipe model, fs and path
-
+//Import recipe model, fs and path
 const Recipe = require("../models/recipeModel");
 const fs = require("fs");
 const path = require("path");
 
-// function to display the recipes
-
+//Function to display the recipes
 const getRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find();
@@ -20,7 +18,7 @@ const getRecipes = async (req, res) => {
   }
 };
 
-// function to create recipes in the database
+//Function to create recipes in the database
 const addRecipesList = async (req, res) => {
   try {
     // load the json file
@@ -41,5 +39,6 @@ const addRecipesList = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 //exporting the module exports
 module.exports = { addRecipesList, getRecipes };
