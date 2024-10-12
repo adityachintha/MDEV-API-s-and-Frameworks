@@ -71,7 +71,7 @@ exports.updateRecipe = async (req, res) => {
       return res.status(404).send("Recipes is not Update and has a error");
     }
     res.status(201).json(updateRecipe);
-    console.log("Recipe is update", updateRecipe);
+    console.log("Recipe is updated", updateRecipe);
   } catch (e) {
     console.error(e);
     res.status(500).send("Error updating recipe");
