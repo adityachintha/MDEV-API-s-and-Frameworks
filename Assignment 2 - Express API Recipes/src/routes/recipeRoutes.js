@@ -16,4 +16,7 @@ router.post("/import", recipeController.importRecipes);
 // Route to read all the recipes
 router.get("/", recipeController.readRecipes);
 
+//Route to find a recipe by ID
+router.get("/:id", recipeController.findRecipeById);
+
 module.exports = router;
