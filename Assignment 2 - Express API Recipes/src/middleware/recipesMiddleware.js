@@ -8,3 +8,10 @@ const logger = (req, res, next) => {
   console.log(`${req.method}${req.originalUrl} - ${new Date().toISOString()}`);
   next();
 };
+
+//Middleware to handle 404 error
+const handleNotFound = (req, res, next) => {
+  res.status(404).send("Page not found/ something went wrong");
+};
+
+module.exports = { logger, handleNotFound };
