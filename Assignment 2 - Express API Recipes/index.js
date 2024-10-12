@@ -37,6 +37,9 @@ app.get("/", (req, res) => {
 //Defining a recipes routes
 app.use("/recipes", recipeRoutes);
 
+//Middleware to Handle Not Found Errors
+app.use(handleNotFound);
+
 //Setting a port
 const port = process.env.PORT || 3000;
 
