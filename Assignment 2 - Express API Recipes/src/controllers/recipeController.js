@@ -34,7 +34,7 @@ exports.readRecipes = async (req, res) => {
 //Function to find recipe by ID
 exports.findRecipeById = async (req, res) => {
   try {
-    const recipeById = await Recipe.findById(req.params.id);
+    const recipeById = await Recipe.findById(req.params.id); //finding a recipe by id
     if (!recipeById) {
       return res.status(404).send("Recipe is not found");
     }
@@ -49,7 +49,7 @@ exports.findRecipeById = async (req, res) => {
 //Function to create a new recipes
 exports.createNewrecipes = async (req, res) => {
   try {
-    const createRecipes = new Recipe(req.body);
+    const createRecipes = new Recipe(req.body); // creating a new recipe
     await createRecipes.save();
     res.status(201).json(createRecipes);
     console.log("recipe successfully created");
@@ -63,6 +63,7 @@ exports.createNewrecipes = async (req, res) => {
 exports.updateRecipe = async (req, res) => {
   try {
     const updateRecipe = await Recipe.findByIdAndUpdate(
+      //finding by id to update
       req.params.id,
       req.body,
       { new: true }
@@ -79,10 +80,9 @@ exports.updateRecipe = async (req, res) => {
 };
 
 //Function to delete a existing recipe
-
 exports.deleteRecipe = async (req, res) => {
   try {
-    const deleteRecipes = await Recipe.findByIdAndDelete(req.params.id);
+    const deleteRecipes = await Recipe.findByIdAndDelete(req.params.id); // finding by id to delete
     if (!deleteRecipes) {
       return res.status(404).send("Recipe is not deleted");
     }
