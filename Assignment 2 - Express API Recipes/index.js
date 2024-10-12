@@ -22,7 +22,7 @@ mongoServer();
 app.use("/", recipeRoutes);
 
 //Setting a port
-const port = 4000;
+const port = process.env.PORT || 3000;
 
 //Start the server
 app.listen(port, () => {
