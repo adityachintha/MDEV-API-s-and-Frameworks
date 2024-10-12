@@ -45,3 +45,16 @@ exports.findRecipeById = async (req, res) => {
     res.status(500).send("Error retreving recipes by id");
   }
 };
+
+//Function to create a new recipes
+exports.createNewrecipes = async (req, res) => {
+  try {
+    const createRecipes = new Recipe(req.body);
+    await createRecipes.save();
+    res.status(201).json(createRecipes);
+    console.log("recipe successfully created");
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error creating recipe");
+  }
+};
