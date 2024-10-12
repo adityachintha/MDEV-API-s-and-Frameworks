@@ -23,6 +23,9 @@ app.get("/", (req, res) => {
   res.send("Welcome to Express API for Top 20 Recipes");
 });
 
+//Defining a recipes routes
+app.use("/recipes", recipeRoutes);
+
 //Setting a port
 const port = process.env.PORT || 3000;
 
