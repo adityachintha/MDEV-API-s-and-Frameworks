@@ -19,7 +19,9 @@ const mongoServer = require("./db");
 mongoServer();
 
 //Defining a root route
-app.use("/", recipeRoutes);
+app.get("/", (req, res) => {
+  res.send("Welcome to Express API for Top 20 Recipes");
+});
 
 //Setting a port
 const port = process.env.PORT || 3000;
