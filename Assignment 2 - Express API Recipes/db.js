@@ -15,3 +15,6 @@ const mongoServer = async () => {
     throw e;
   }
 };
+
+// Export the modules
+module.exports = mongoServer;
