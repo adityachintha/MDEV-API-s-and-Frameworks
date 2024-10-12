@@ -1,7 +1,7 @@
 {
   "name": "assignment-1---recipes-express-api",
   "version": "1.0.0",
-  "description": "this is th first project for express node js",
+  "description": "this is the first recipes express api for CRUD operations",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
