@@ -90,6 +90,6 @@ exports.deleteRecipe = async (req, res) => {
     console.log("Recipe is deleted", deleteRecipes);
   } catch (e) {
     console.error(e);
-    res.status(500).send("Error updating recipe");
+    res.status(500).send("Error deleting a recipe");
   }
 };
