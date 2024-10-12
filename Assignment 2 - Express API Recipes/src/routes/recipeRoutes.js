@@ -22,4 +22,7 @@ router.get("/:id", recipeController.findRecipeById);
 //Route to create a new recipes
 router.post("/create", recipeController.createNewrecipes);
 
+//Route to update a recipe
+router.put("/update/:id", recipeController.updateRecipe);
+
 module.exports = router;
