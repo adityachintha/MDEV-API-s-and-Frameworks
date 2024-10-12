@@ -77,3 +77,19 @@ exports.updateRecipe = async (req, res) => {
     res.status(500).send("Error updating recipe");
   }
 };
+
+//Function to delete a existing recipe
+
+exports.deleteRecipe = async (req, res) => {
+  try {
+    const deleteRecipes = await Recipe.findByIdAndDelete(req.params.id);
+    if (!deleteRecipes) {
+      return res.status(404).send("Recipe is not deleted");
+    }
+    res.status(201).json(deleteRecipes);
+    console.log("Recipe is deleted", deleteRecipes);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error updating recipe");
+  }
+};
