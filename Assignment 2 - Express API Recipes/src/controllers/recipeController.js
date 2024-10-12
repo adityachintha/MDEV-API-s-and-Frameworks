@@ -30,3 +30,18 @@ exports.readRecipes = async (req, res) => {
     res.status(500).send("Error retreving recipes");
   }
 };
+
+//Function to find recipe by ID
+exports.findRecipeById = async (req, res) => {
+  try {
+    const recipeById = await Recipe.findById(req.params.id);
+    if (!recipeById) {
+      return res.status(404).send("Recipe is not found");
+    }
+    res.status(200).json(recipeById);
+    console.log("Recipes is found by ID");
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error retreving recipes by id");
+  }
+};
