@@ -19,4 +19,7 @@ router.get("/", recipeController.readRecipes);
 //Route to find a recipe by ID
 router.get("/:id", recipeController.findRecipeById);
 
+//Route to create a new recipes
+router.post("/create", recipeController.createNewrecipes);
+
 module.exports = router;
