@@ -52,7 +52,10 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid username or password" });
     }
     //comparing the entered password with hashed password
-    const userMatchedPassword = await bcrypt.compare(password.user.password);
+    const userMatchedPassword = await bcrypt.compare(
+      password,
+      userExisted.password
+    );
     if (!userMatchedPassword) {
       return res
         .status(400)
