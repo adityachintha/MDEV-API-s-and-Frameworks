@@ -5,6 +5,7 @@
 
 //Importing model
 const User = require("../models/userModel");
+const bcrypt = require("bcrypt");
 
 // Register a New user
 exports.registerNewUser = async (req, res) => {
@@ -46,12 +47,19 @@ exports.loginUser = async (req, res) => {
     }
 
     //checking for existing user
-    const userExisted = await User.findOne("username");
+    const userExisted = await User.findOne({ username: username });
     if (!userExisted) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
+    //comparing the entered password with hashed password
+    const userMatchedPassword = await bcrypt.compare(password.user.password);
+    if (!userMatchedPassword) {
+      return res
+        .status(400)
+        .json({ message: "Password does not match, please try again" });
+    }
     //on successfull login
-    res.status(200).json({ message: "Login Successfull", userID: user._id });
+    res.status(200).json({ message: "Login Successfull" });
   } catch (error) {
     console.error("Error details -", error);
     return res.status(500).json({ message: "Error Logging user" });
