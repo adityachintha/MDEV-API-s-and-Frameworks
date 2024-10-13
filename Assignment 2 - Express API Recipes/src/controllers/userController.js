@@ -22,11 +22,18 @@ exports.registerNewUser = async (req, res) => {
         .json({ message: "Invalid email address, please re-enter/check" });
     }
 
-    //Checking for exisiting user
-
+    //Checking for existing user
     const userExist = await User.findOne({ email });
     if (userExist) {
       res.status(400).json({ message: "Email is already in use" });
     }
-  } catch {}
+
+    //registering a new user
+    const newUser = new User({ username, email, password });
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Error details -", error);
+    res.status(500).json({ message: "Error registering user" });
+  }
 };
