@@ -8,6 +8,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const recipeRoutes = require("./src/routes/recipeRoutes");
+const userRoutes = require("./src/routes/userRoutes");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const {
@@ -36,6 +37,9 @@ app.get("/", (req, res) => {
 
 //Defining a recipes routes
 app.use("/recipes", recipeRoutes);
+
+//Defining the user routes
+app.use("/user", userRoutes);
 
 //Middleware to Handle Not Found Errors
 app.use(handleNotFound);
