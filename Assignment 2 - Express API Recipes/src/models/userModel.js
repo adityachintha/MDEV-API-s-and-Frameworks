@@ -1,3 +1,8 @@
+// File Name - userModel.js
+// Student Name - Aditya Chintha
+// Student ID - 200595829
+// Date - 12 October 2024
+
 //Import modules
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
