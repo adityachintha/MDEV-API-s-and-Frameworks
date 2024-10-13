@@ -21,5 +21,12 @@ exports.registerNewUser = async (req, res) => {
         .status(400)
         .json({ message: "Invalid email address, please re-enter/check" });
     }
+
+    //Checking for exisiting user
+
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      res.status(400).json({ message: "Email is already in use" });
+    }
   } catch {}
 };
