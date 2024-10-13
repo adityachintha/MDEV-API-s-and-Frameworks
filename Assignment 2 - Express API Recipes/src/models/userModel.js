@@ -8,3 +8,14 @@ const UserSchema = new mongoose.Schema({
     email: {type:String, required:true, unique:true},
     password: {type:String, required:true}
 });
+
+// Middleware for encrypting password before saving user information in collections
+UserSchema.pre("save", async function(next){
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+
+});
+
+//
+
