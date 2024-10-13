@@ -12,12 +12,12 @@ exports.registerNewUser = async (req, res) => {
   try {
     //Validate the inputs
     if (!username || !password || !email) {
-      res.statu(400).json({ messeage: "all field are required" });
+      return res.status(400).json({ messeage: "all field are required" });
     }
 
     //Checking if the email is valid
     if (email !== "String" && email.trim() == "") {
-      res
+      return res
         .status(400)
         .json({ message: "Invalid email address, please re-enter/check" });
     }
@@ -25,15 +25,15 @@ exports.registerNewUser = async (req, res) => {
     //Checking for existing user
     const userExist = await User.findOne({ email });
     if (userExist) {
-      res.status(400).json({ message: "Email is already in use" });
+      return res.status(400).json({ message: "Email is already in use" });
     }
 
     //registering a new user
     const newUser = new User({ username, email, password });
     await newUser.save();
-    res.status(201).json({ message: "User registered successfully" });
+    return res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error("Error details -", error);
-    res.status(500).json({ message: "Error registering user" });
+    return res.status(500).json({ message: "Error registering user" });
   }
 };
