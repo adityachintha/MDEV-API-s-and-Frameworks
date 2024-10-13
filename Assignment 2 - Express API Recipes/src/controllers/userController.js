@@ -36,3 +36,21 @@ exports.registerNewUser = async (req, res) => {
     return res.status(500).json({ message: "Error registering user" });
   }
 };
+
+exports.loginUser = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    //Validating the user information
+    if (!username || !password) {
+      return res.status(401).json({ message: "All fields are required" });
+    }
+
+    //checking for existing user
+    const userExist = await User.findOne("username");
+    if (!userExist) {
+      return res.status(400).json({ message: "Invalid username or password" });
+    }
+    //on successfull login
+    res.status(200).json({ message: "Login Successfull", userID: user._id });
+  } catch {}
+};
