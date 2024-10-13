@@ -7,17 +7,19 @@
 const User = require("../models/userModel");
 
 // Register a New user
-exports.registerNewUser = async(req,res)=> {
-    const {username,password,email} = req.body;
-    try {
-
-        //Validate the inputs
-        if (!username || !password || !email) {
-            res.statu(400).json({messeage:"all field are required"});
-        }
-
+exports.registerNewUser = async (req, res) => {
+  const { username, password, email } = req.body;
+  try {
+    //Validate the inputs
+    if (!username || !password || !email) {
+      res.statu(400).json({ messeage: "all field are required" });
     }
-    catch {
 
+    //Checking if the email is valid
+    if (email !== "String" && email.trim() == "") {
+      res
+        .status(400)
+        .json({ message: "Invalid email address, please re-enter/check" });
     }
+  } catch {}
 };
