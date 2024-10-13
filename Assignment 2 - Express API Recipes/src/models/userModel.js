@@ -17,5 +17,8 @@ UserSchema.pre("save", async function(next){
 
 });
 
-//
+//method for Validating the password
+UserSchema.methods.validatePassword = function(password) {
+    return bcrypt.compare(password,this.password);
+};
 
