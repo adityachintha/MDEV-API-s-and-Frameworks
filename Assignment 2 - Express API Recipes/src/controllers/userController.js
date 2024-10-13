@@ -46,11 +46,14 @@ exports.loginUser = async (req, res) => {
     }
 
     //checking for existing user
-    const userExist = await User.findOne("username");
-    if (!userExist) {
+    const userExisted = await User.findOne("username");
+    if (!userExisted) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
     //on successfull login
     res.status(200).json({ message: "Login Successfull", userID: user._id });
-  } catch {}
+  } catch (error) {
+    console.error("Error details -", error);
+    return res.status(500).json({ message: "Error Logging user" });
+  }
 };
