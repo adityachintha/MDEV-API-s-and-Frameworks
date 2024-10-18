@@ -7,6 +7,7 @@
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const e = require("express");
 const LocalStrategy = require("passport-local").Strategy;
 
 // Local statergy configuration for username/password login
@@ -34,3 +35,9 @@ passport.use(
 );
 
 //Serialize and Deserialize user for session support
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser((id, done) => {
+  User.findByID(id)
+    .then((user) => done(null, user))
+    .catch((e) => done(e, null));
+});
