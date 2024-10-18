@@ -13,3 +13,10 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }, //Password doesn't require a unique key
 });
+
+//encrypt password before saving the user information in the database
+UserSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt(10); //this will encrypt the 10 times, the more the number and is expensive.
+  this.password = await bcrypt.hash(this.password, salt); // this.password will hash the password and saves in this.password
+  next();
+});
