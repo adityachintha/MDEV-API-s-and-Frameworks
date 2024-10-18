@@ -21,7 +21,7 @@ passport.use(
           return done(null, false, { message: "Incorrect Username" });
         }
         //Validating if the password matches
-        const isPassword = await bcrypt.compare(passport, user.passport);
+        const isPassword = await bcrypt.compare(password, user.passport);
         if (!isPassword) {
           return done(null, false, { message: "Incorrect Password" });
         }
@@ -32,3 +32,5 @@ passport.use(
     }
   )
 );
+
+//Serialize and Deserialize user for session support
