@@ -1,7 +1,7 @@
 // File Name - movieMiddleware.js
 // Student Name - Aditya Chintha
 // Student ID - 200595829
-// Date - 8th October 2024
+// Date - 18th October 2024
 
 //Middleware to log incoming requests
 const logger = (req, res, next) => {
