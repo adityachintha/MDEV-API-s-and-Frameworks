@@ -16,7 +16,7 @@ exports.registerNewUser = async (req, res) => {
       return res.status(400).json({ messeage: "all field are required" });
     }
     //Checking if the email is valid
-    if (email !== "String" || email.trim() == "") {
+    if (typeof email !== "string" || email.trim() == "") {
       return res
         .status(400)
         .json({ message: "Invalid email address, please re-enter / check" });
