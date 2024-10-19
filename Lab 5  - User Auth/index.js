@@ -8,6 +8,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
+const session = require("express-session");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
 const movieRoutes = require("./src/routes/movieRoutes");
@@ -56,7 +57,7 @@ app.get("/", (req, res) => {
 //use the route for Movies
 app.use("/movies", movieRoutes);
 
-//user the route for users
+//use the route for users
 app.use("/auth", authRoutes);
 
 app.use(handleNotFound); // for handling errors

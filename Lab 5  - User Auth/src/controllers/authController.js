@@ -41,21 +41,27 @@ exports.registerUser = async (req, res) => {
 
 //Function to Login user
 exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
     //Validating the user or email or password
-    if (!email || !password) {
+    if (!username || !password) {
       return res.status(401).json({ message: "All fields are required" });
     }
 
     //Checking for existing user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (!user) {
       return res.status(401).json({ message: "Imvalid email or password" });
     }
+
+    // Debugging: check the user and the hashed password
+    console.log("User found:", user);
+    console.log("Stored hashed password:", user.password);
+
     //Compare password with hashed password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await user.validatePassword(password);
+    console.log("Is password valid:", isPasswordValid); // Debugging log
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Password does not match" });
     }

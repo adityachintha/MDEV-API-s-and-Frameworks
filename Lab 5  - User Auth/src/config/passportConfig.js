@@ -22,7 +22,7 @@ passport.use(
           return done(null, false, { message: "Incorrect Username" });
         }
         //Validating if the password matches
-        const isPassword = await bcrypt.compare(password, user.passport);
+        const isPassword = await bcrypt.compare(password, user.password);
         if (!isPassword) {
           return done(null, false, { message: "Incorrect Password" });
         }
@@ -37,7 +37,7 @@ passport.use(
 //Serialize and Deserialize user for session support
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser((id, done) => {
-  User.findByID(id)
+  User.findById(id)
     .then((user) => done(null, user))
     .catch((e) => done(e, null));
 });
