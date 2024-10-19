@@ -12,6 +12,8 @@ dotenv.config({ path: "./config.env" });
 const fs = require("fs");
 const movieRoutes = require("./src/routes/movieRoutes");
 const userRoutes = require("./src/routes/userRoutes");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const { logger, handleNotFound } = require("./src/middlewares/movieMiddleware");
 
 //initialize the express app
