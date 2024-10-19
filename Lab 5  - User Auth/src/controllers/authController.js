@@ -37,3 +37,8 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ message: "Error registering user" });
   }
 };
+
+//Function to Login user
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+};
