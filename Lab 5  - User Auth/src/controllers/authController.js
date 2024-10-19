@@ -4,6 +4,7 @@
 // Date - 18th October 2024
 
 const User = require("../models/userModel");
+const bcrypt = require("bcrypt");
 
 //Function to Register User
 exports.registerUser = async (req, res) => {
