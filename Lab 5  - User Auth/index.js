@@ -21,6 +21,18 @@ const { logger, handleNotFound } = require("./src/middlewares/movieMiddleware");
 //initialize the express app
 const app = express();
 
+//Set a session and passport
+const secretKey =
+  process.env.SECRET_KEY || crypto.randomBytes(64).toString("hex");
+console.log(`Generated Secret KEY: ${secretKey}`);
+app.use(
+  session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 //Initilize the Databse Connection
 const initiateMongoServer = require("./db");
 initiateMongoServer();
