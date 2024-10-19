@@ -7,7 +7,7 @@
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const e = require("express");
+const express = require("express");
 const LocalStrategy = require("passport-local").Strategy;
 
 // Local statergy configuration for username/password login
