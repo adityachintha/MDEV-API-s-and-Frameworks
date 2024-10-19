@@ -11,3 +11,6 @@ const userController = require("../controllers/authController");
 
 //Route to Register the User
 router.post("/register", userController.registerUser);
+
+//Route to login the User
+router.get("/login", userController.loginUser);
