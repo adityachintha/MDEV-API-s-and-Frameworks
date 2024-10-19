@@ -11,6 +11,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
 const movieRoutes = require("./src/routes/movieRoutes");
+const userRoutes = require("./src/routes/userRoutes");
 const { logger, handleNotFound } = require("./src/middlewares/movieMiddleware");
 
 //initialize the express app
@@ -34,8 +35,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to my first program of nodejs express");
 });
 
-//use the route
+//use the route for Movies
 app.use("/movies", movieRoutes);
+
+//user the route for users
+app.use("/users", userRoutes);
 
 app.use(handleNotFound); // for handling errors
 
