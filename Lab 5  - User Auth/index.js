@@ -11,7 +11,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const fs = require("fs");
 const movieRoutes = require("./src/routes/movieRoutes");
-const userRoutes = require("./src/routes/userRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const crypto = require("crypto");
@@ -32,6 +32,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Initilize the Databse Connection
 const initiateMongoServer = require("./db");
@@ -55,7 +57,7 @@ app.get("/", (req, res) => {
 app.use("/movies", movieRoutes);
 
 //user the route for users
-app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
 
 app.use(handleNotFound); // for handling errors
 

@@ -6,7 +6,7 @@
 //Importing
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const User = require("../models/userModel");
 const express = require("express");
 const LocalStrategy = require("passport-local").Strategy;
 
