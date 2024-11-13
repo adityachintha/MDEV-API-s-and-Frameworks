@@ -7,6 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const recipeController = require("../controllers/recipeController");
+const verifyToken = require("../middleware/auth");
 
 //Route to import recipes from JSON file
 router.post("/import", recipeController.importRecipes);
@@ -18,12 +19,12 @@ router.get("/", recipeController.readRecipes);
 router.get("/:id", recipeController.findRecipeById);
 
 //Route to create a new recipes
-router.post("/create", recipeController.createNewrecipes);
+router.post("/create", verifyToken, recipeController.createNewrecipes);
 
 //Route to update a recipe
-router.put("/update/:id", recipeController.updateRecipe);
+router.put("/update/:id", verifyToken, recipeController.updateRecipe);
 
 //Route to delete a recipes
-router.delete("/delete/:id", recipeController.deleteRecipe);
+router.delete("/delete/:id", verifyToken, recipeController.deleteRecipe);
 
 module.exports = router;
