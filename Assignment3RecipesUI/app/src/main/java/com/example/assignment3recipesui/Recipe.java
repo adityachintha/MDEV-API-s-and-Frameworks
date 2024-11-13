@@ -26,4 +26,14 @@ public class Recipe {
 
     @SerializedName("averageRating")
     private double averageRating;
+
+    // Getters
+    public String getId() { return id; }
+    public String getRecipeName() { return recipeName; }
+    public String getCookingTime() { return cookingTime; }
+    public String getDifficulty() { return difficulty; }
+    public String getCuisine() { return cuisine; }
+    public String getDescription() { return description; }
+    public String getPhotoLink() { return photoLink; }
+    public double getAverageRating() { return averageRating; }
 }
