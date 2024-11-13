@@ -71,8 +71,8 @@ exports.loginUser = async (req, res) => {
         .status(400)
         .json({ message: "Password does not match, please try again" });
     }
-     //Create token for the user
-     const token = jwt.sign(
+    //Create token for the user
+    const token = jwt.sign(
       { user_id: userExisted._id, email },
       process.env.SECRET_TOKEN,
       {
