@@ -8,6 +8,10 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
 // Register a New user
+// req - The request object param.
+// res - The response object param.
+// Returns success message on user registration or an error message.
+
 exports.registerNewUser = async (req, res) => {
   const { username, password, email } = req.body;
   try {
@@ -37,6 +41,11 @@ exports.registerNewUser = async (req, res) => {
     return res.status(500).json({ message: "Error registering user" });
   }
 };
+
+// Function for User login
+// req - The request object param.
+// res - The response object param.
+// Returns success message on login or an error message.
 
 exports.loginUser = async (req, res) => {
   const { username, password } = req.body;
@@ -70,6 +79,10 @@ exports.loginUser = async (req, res) => {
 };
 
 //function for logout
+// req - The request object param.
+// res - The response object param.
+// Returns success message on logout or an error message.
+
 exports.logoutUser = async (req, res) => {
   res.status(201).json({ message: "Logout Successful" });
 };

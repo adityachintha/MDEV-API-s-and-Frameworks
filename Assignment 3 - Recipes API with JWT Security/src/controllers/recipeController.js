@@ -7,7 +7,11 @@
 const Recipe = require("../models/recipeModel");
 const fs = require("fs");
 
-//Function to Import recipes
+//Function to import recipes.
+// req - The request object param.
+// res - The response object param.
+// Returns success message on recipes import or an error message.
+
 exports.importRecipes = async (req, res) => {
   try {
     const data = JSON.parse(fs.readFileSync("./recipes_list.json", "utf-8"));
@@ -20,6 +24,10 @@ exports.importRecipes = async (req, res) => {
 };
 
 //Function to list all recipes
+// req - The request object param.
+// res - The response object param.
+// Returns success message on reading recipes or an error message.
+
 exports.readRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find(); // Finds all the recipes in database
@@ -32,6 +40,10 @@ exports.readRecipes = async (req, res) => {
 };
 
 //Function to find recipe by ID
+// req - The request object param.
+// res - The response object param.
+// Returns success message on reading recipe by id or an error message.
+
 exports.findRecipeById = async (req, res) => {
   try {
     const recipeById = await Recipe.findById(req.params.id); //finding a recipe by id
@@ -47,6 +59,10 @@ exports.findRecipeById = async (req, res) => {
 };
 
 //Function to create a new recipes
+// req - The request object param.
+// res - The response object param.
+// Returns success message on recipe creation or an error message.
+
 exports.createNewrecipes = async (req, res) => {
   try {
     const createRecipes = new Recipe(req.body); // creating a new recipe
@@ -60,6 +76,10 @@ exports.createNewrecipes = async (req, res) => {
 };
 
 //Function to update a existing recipe
+// req - The request object param.
+// res - The response object param.
+// Returns success message on updating recipe by id or an error message.
+
 exports.updateRecipe = async (req, res) => {
   try {
     const updateRecipe = await Recipe.findByIdAndUpdate(
@@ -80,6 +100,10 @@ exports.updateRecipe = async (req, res) => {
 };
 
 //Function to delete a existing recipe
+// req - The request object param.
+// res - The response object param.
+// Returns success message on delete recipe by id or an error message.
+
 exports.deleteRecipe = async (req, res) => {
   try {
     const deleteRecipes = await Recipe.findByIdAndDelete(req.params.id); // finding by id to delete
