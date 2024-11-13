@@ -6,6 +6,7 @@
 //Importing model
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Register a New user
 // req - The request object param.
@@ -48,15 +49,15 @@ exports.registerNewUser = async (req, res) => {
 // Returns success message on login or an error message.
 
 exports.loginUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { password, email } = req.body;
   try {
     //Validating the user information
-    if (!username || !password) {
+    if (!email || !password) {
       return res.status(401).json({ message: "All fields are required" });
     }
 
     //checking for existing user
-    const userExisted = await User.findOne({ username: username });
+    const userExisted = await User.findOne({ email });
     if (!userExisted) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
@@ -70,8 +71,17 @@ exports.loginUser = async (req, res) => {
         .status(400)
         .json({ message: "Password does not match, please try again" });
     }
+     //Create token for the user
+     const token = jwt.sign(
+      { user_id: userExisted._id, email },
+      process.env.SECRET_TOKEN,
+      {
+        expiresIn: "10m",
+      }
+    );
+
     //on successfull login
-    res.status(200).json({ message: "Login Successfull" });
+    res.status(200).json({ message: "Login Successfull", token });
   } catch (error) {
     console.error("Error details -", error);
     return res.status(500).json({ message: "Error Logging user" });
