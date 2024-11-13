@@ -35,6 +35,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to Express API for Top 20 Recipes");
 });
 
+//Defining a recipes routes
+app.use("/recipes", recipeRoutes);
+
+//Defining the user routes
+app.use("/user", userRoutes);
 
 //Middleware to Handle Not Found Errors
 app.use(handleNotFound);
