@@ -7,83 +7,87 @@
 
     <!-- Recipe Item -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/recipe_item_border"
-        android:padding="16dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <!-- Recipe Name: Label and Text -->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingBottom="8dp">
 
             <TextView
-                android:text="Recipe Name:"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:text="Name of Recipe"
+                android:textColor="#D84315"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recipeName"
-                android:text="Recipe Name"
-                android:textSize="18sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="Recipe Name"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Cuisine: Label and Text -->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingBottom="8dp">
 
             <TextView
-                android:text="Cuisine:"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:text="Cuisine Type"
+                android:textColor="#D84315"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/cuisine"
-                android:text="Cuisine"
-                android:textSize="14sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Cuisine"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Rating: Label and Text -->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingBottom="8dp">
 
             <TextView
-                android:text="Rating:"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:text="Rating:"
+                android:textColor="#D84315"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/rating"
-                android:text="Rating: 4.5"
-                android:textSize="12sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="Rating: 4.5"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

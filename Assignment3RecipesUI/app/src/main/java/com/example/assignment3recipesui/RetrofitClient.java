@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.0.143:3000";
+    private static final String BASE_URL = "https://mdev-api-s-and-frameworks-recipes-ui.onrender.com";
     private static Retrofit retrofit;
 
     public static ApiService getApiService() {
