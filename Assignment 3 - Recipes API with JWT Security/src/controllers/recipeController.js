@@ -50,7 +50,10 @@ exports.findRecipeById = async (req, res) => {
     if (!recipeById) {
       return res.status(404).send("Recipe is not found");
     }
-    res.status(200).json(recipeById);
+    res.status(200).json({
+      message: "Recipe Found successfully",
+      recipe: recipeById,
+    });
     console.log("Recipes is found by ID");
   } catch (e) {
     console.error(e);
@@ -67,7 +70,9 @@ exports.createNewrecipes = async (req, res) => {
   try {
     const createRecipes = new Recipe(req.body); // creating a new recipe
     await createRecipes.save();
-    res.status(201).json(createRecipes);
+    res
+      .status(201)
+      .json({ message: "Recipe created successfully", recipe: createRecipes });
     console.log("recipe successfully created");
   } catch (e) {
     console.error(e);
@@ -91,7 +96,9 @@ exports.updateRecipe = async (req, res) => {
     if (!updateRecipe) {
       return res.status(404).send("Recipes is not Update and has a error");
     }
-    res.status(201).json(updateRecipe);
+    res
+      .status(201)
+      .json({ message: "Recipe Updated successfully", recipe: updateRecipe });
     console.log("Recipe is updated", updateRecipe);
   } catch (e) {
     console.error(e);
@@ -110,7 +117,9 @@ exports.deleteRecipe = async (req, res) => {
     if (!deleteRecipes) {
       return res.status(404).send("Recipe is not deleted");
     }
-    res.status(201).json(deleteRecipes);
+    res
+      .status(201)
+      .json({ message: "Recipe Deleted successfully", recipe: deleteRecipes });
     console.log("Recipe is deleted", deleteRecipes);
   } catch (e) {
     console.error(e);
