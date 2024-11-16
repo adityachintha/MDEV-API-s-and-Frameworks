@@ -76,7 +76,7 @@ exports.loginUser = async (req, res) => {
       { user_id: userExisted._id, email },
       process.env.SECRET_TOKEN,
       {
-        expiresIn: "10m",
+        expiresIn: "15m",
       }
     );
 
