@@ -1,45 +1,78 @@
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDC0HU1grETWOpFFnIsbdTZo6EWlO44Mu0",
-    authDomain: "week11app-64a55.firebaseapp.com",
-    databaseURL: "https://week11app-64a55-default-rtdb.firebaseio.com",
-    projectId: "week11app-64a55",
-    storageBucket: "week11app-64a55.firebasestorage.app",
-    messagingSenderId: "782975379361",
-    appId: "1:782975379361:web:4754f6800180bc57058de0",
-    measurementId: "G-CRRR7L4QPX"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  // Handle Sign-In
-  document.getElementById("signinForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("signinEmail").value;
-    const password = document.getElementById("signinPassword").value;
-  
-    try {
-      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-      const idToken = await userCredential.user.getIdToken();
-      localStorage.setItem("authToken", idToken);
-      window.location.href = "welcome.html"; // Redirect to the welcome page
-    } catch (error) {
-      document.getElementById("signinMessage").innerText = error.message;
+  apiKey: "AIzaSyBc91zrfXwXUfkMhrTmTlP1FK3Z_IQkyww",
+  authDomain: "project-lab6-e6fa6.firebaseapp.com",
+  databaseURL: "https://project-lab6-e6fa6-default-rtdb.firebaseio.com",
+  projectId: "project-lab6-e6fa6",
+  storageBucket: "project-lab6-e6fa6.firebasestorage.app",
+  messagingSenderId: "748712042863",
+  appId: "1:748712042863:web:9a67385a109bc1f227489a",
+  measurementId: "G-91WNS9KV0V",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Handle Sign-In
+document.getElementById("signinForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("signinEmail").value;
+  const password = document.getElementById("signinPassword").value;
+
+  try {
+    const response = await fetch("http://localhost:3000/firebase/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      if (data.token) {
+        try {
+          const userCredential = await firebase
+            .auth()
+            .signInWithCustomToken(data.token);
+          console.log("Signed in successfully:", userCredential);
+
+          // Now retrieve the ID token after successful sign-in
+          const idToken = await userCredential.user.getIdToken();
+          console.log("ID Token:", idToken);
+
+          // Store the ID token in localStorage or use it as needed
+          localStorage.setItem("authToken", idToken);
+          window.location.href = "welcome.html";
+        } catch (error) {
+          console.error("Error signing in with custom token:", error.message);
+        }
+      } else {
+        document.getElementById("signinMessage").innerText = "No token found.";
+      }
+    } else {
+      document.getElementById("signinMessage").innerText =
+        data.error || "An unknown error occurred.";
     }
-  });
-  
-  // Handle Sign-Up
-  document.getElementById("signupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
-  
-    try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
-      document.getElementById("signupMessage").innerText = "Account created successfully!";
-    } catch (error) {
-      document.getElementById("signupMessage").innerText = error.message;
-    }
-  });
-  
+  } catch (error) {
+    console.error("Error during sign-in:", error);
+    document.getElementById("signinMessage").innerText =
+      "An error occurred. Please try again.";
+  }
+});
+
+// Handle Sign-Up
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password);
+    document.getElementById("signupMessage").innerText =
+      "Account created successfully!";
+  } catch (error) {
+    document.getElementById("signupMessage").innerText = error.message;
+  }
+});
