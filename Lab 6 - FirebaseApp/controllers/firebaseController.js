@@ -11,7 +11,16 @@ const signUp = async (req, res) => {
       password,
     });
 
-    res.status(201).json({ message: "User created successfully", uid: userRecord.uid });
+    // Saving user data
+    const db = admin.database(); // Access the Realtime Database
+    await db.ref(`users/${userRecord.uid}`).set({
+      email: userRecord.email,
+      createdAt: new Date().toISOString(),
+    });
+
+    res
+      .status(201)
+      .json({ message: "User created successfully", uid: userRecord.uid });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -28,14 +37,13 @@ const signIn = async (req, res) => {
     // Generate a custom token for the user
     const customToken = await admin.auth().createCustomToken(user.uid);
 
-    res.status(200).json({ message: "Signed in successfully", token: customToken });
+    res
+      .status(200)
+      .json({ message: "Signed in successfully", token: customToken });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
-
-
 
 // Middleware to verify Firebase ID Token
 const verifyToken = async (req, res, next) => {
@@ -45,16 +53,15 @@ const verifyToken = async (req, res, next) => {
     return res.status(401).json({ error: "No token provided" });
   }
 
-  const idToken = authHeader.split("Bearer ")[1];  // Extract token from 'Authorization' header
+  const idToken = authHeader.split("Bearer ")[1]; // Extract token from 'Authorization' header
 
   try {
-    const decodedToken = await admin.auth().verifyIdToken(idToken);  // Verify the ID token
-    req.user = decodedToken;  // Attach the decoded token to the request object
-    next();  // Continue to the protected route handler
+    const decodedToken = await admin.auth().verifyIdToken(idToken); // Verify the ID token
+    req.user = decodedToken; // Attach the decoded token to the request object
+    next(); // Continue to the protected route handler
   } catch (error) {
     return res.status(401).json({ error: "Invalid token" });
   }
 };
-
 
 module.exports = { signUp, signIn, verifyToken };
