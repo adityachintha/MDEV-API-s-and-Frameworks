@@ -40,6 +40,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipes.size();
     }
 
+    // Method to update the data in the adapter
+    public void updateData(List<Recipe> newRecipes) {
+        this.recipes.clear();
+        this.recipes.addAll(newRecipes);
+        notifyDataSetChanged();
+    }
+
     // ViewHolder for RecyclerView
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
 

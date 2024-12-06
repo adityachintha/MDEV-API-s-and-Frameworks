@@ -36,4 +36,14 @@ public class Recipe {
     public String getDescription() { return description; }
     public String getPhotoLink() { return photoLink; }
     public double getAverageRating() { return averageRating; }
+
+    // Setters
+    public void setId(String id) { this.id = id; }
+    public void setRecipeName(String recipeName) { this.recipeName = recipeName; }
+    public void setCookingTime(String cookingTime) { this.cookingTime = cookingTime; }
+    public void setDifficulty(String difficulty) { this.difficulty = difficulty; }
+    public void setCuisine(String cuisine) { this.cuisine = cuisine; }
+    public void setDescription(String description) { this.description = description; }
+    public void setPhotoLink(String photoLink) { this.photoLink = photoLink; }
+    public void setAverageRating(double averageRating) { this.averageRating = averageRating; }
 }
