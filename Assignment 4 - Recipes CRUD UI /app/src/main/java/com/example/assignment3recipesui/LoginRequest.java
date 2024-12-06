@@ -9,13 +9,12 @@ public class LoginRequest {
     @SerializedName("password")
     private String password;
 
-//    @SerializedName("username")
-//    private String username;
+
 
     public LoginRequest(String email, String password) {
         this.email = email;
         this.password = password;
-//        this.username = username;
+//
     }
     // Getters and setters
     public String getEmail() {
@@ -34,12 +33,5 @@ public class LoginRequest {
         this.password = password;
     }
 
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
 }
 

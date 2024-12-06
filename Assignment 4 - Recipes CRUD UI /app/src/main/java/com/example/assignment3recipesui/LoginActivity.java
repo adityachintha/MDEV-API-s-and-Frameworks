@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText emailInput, passwordInput, usernameInput;
+    private EditText emailInput, passwordInput;
     private Button loginButton;
     private TextView registerLink;
 
@@ -75,17 +75,24 @@ public class LoginActivity extends AppCompatActivity {
 
         // Call the login API
         ApiService apiService = RetrofitClient.getApiService(this);
-        Call<LoginResponse> call = apiService.loginUser(loginRequest);
+        Call<LoginResponse> call = apiService.loginUser(emailInput.getText().toString(), passwordInput.getText().toString());
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    TokenManager.saveToken(LoginActivity.this, response.body().getToken());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    Log.d("LoginResponse", "Response body: " + response.body().toString());
+                    Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    if ("Login Successfull".equals(response.body().getMessage())) {
+                        TokenManager.saveToken(LoginActivity.this, response.body().getToken());
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    Log.e("LoginResponseError", "Response error: " + response.errorBody());
+                    Toast.makeText(LoginActivity.this, "Error: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 

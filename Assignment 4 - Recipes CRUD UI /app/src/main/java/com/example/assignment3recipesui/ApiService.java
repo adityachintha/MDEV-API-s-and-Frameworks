@@ -8,7 +8,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.DELETE;
 import retrofit2.http.Path;
 import retrofit2.http.Body;
-
+import retrofit2.http.Query;
 
 
 public interface ApiService {
@@ -16,9 +16,11 @@ public interface ApiService {
     @POST("/user/register")
     Call<RegisterResponseNew> registerUser(@Body RegisterRequestNew request);
 
-    @POST("/user/login")
-    Call<LoginResponse> loginUser(@Body LoginRequest request);
-
+    @GET("/user/login")
+    Call<LoginResponse> loginUser(
+            @Query("email") String email,
+            @Query("password") String password
+    );
     @GET("/user/logout")
     Call<Void> logoutUser();
 
