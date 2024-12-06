@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-//        String username = usernameInput.getText().toString().trim(); // Get username input
+//
 
         // Validate inputs
         if (email.isEmpty() || password.isEmpty() ) {
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Call the login API
         ApiService apiService = RetrofitClient.getApiService(this);
-        Call<LoginResponse> call = apiService.loginUser(emailInput.getText().toString(), passwordInput.getText().toString());
+        Call<LoginResponse> call = apiService.loginUser(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override

@@ -16,10 +16,9 @@ public interface ApiService {
     @POST("/user/register")
     Call<RegisterResponseNew> registerUser(@Body RegisterRequestNew request);
 
-    @GET("/user/login")
+    @POST("/user/login")
     Call<LoginResponse> loginUser(
-            @Query("email") String email,
-            @Query("password") String password
+            @Body LoginRequest loginRequest
     );
     @GET("/user/logout")
     Call<Void> logoutUser();
