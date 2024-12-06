@@ -50,15 +50,18 @@ exports.registerNewUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { password, email } = req.body;
+  console.log("Received Login Request:", req.body); // Log the incoming payload
   try {
     //Validating the user information
     if (!email || !password) {
+      console.log("Missing Fields:", { email, password });
       return res.status(401).json({ message: "All fields are required" });
     }
 
     //checking for existing user
     const userExisted = await User.findOne({ email });
     if (!userExisted) {
+      console.log("User not found for email:", email);
       return res.status(400).json({ message: "Invalid username or password" });
     }
     //comparing the entered password with hashed password
@@ -66,6 +69,7 @@ exports.loginUser = async (req, res) => {
       password,
       userExisted.password
     );
+    console.log("Password comparison result:", userMatchedPassword);
     if (!userMatchedPassword) {
       return res
         .status(400)
