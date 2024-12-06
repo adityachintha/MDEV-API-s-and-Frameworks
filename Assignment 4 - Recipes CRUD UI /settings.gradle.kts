@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Assignment3RecipesUI"
+rootProject.name = "Assignment4RecipesCRUDUI"
 include(":app")
  

@@ -7,6 +7,8 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
+retrofit = "2.9.0"
+okhttp = "4.9.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -19,6 +21,9 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 gson = "com.google.code.gson:gson:2.8.9"
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
 converter-gson = "com.squareup.retrofit2:converter-gson:2.9.0"
+
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
