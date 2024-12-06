@@ -51,7 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     List<Recipe> recipes = new ArrayList<>();
                     for (RecipeResponseNew recipeResponseNew : response.body()) {
-                        Recipe recipe = new Recipe();
+                        String id = recipeResponseNew.getId();
+                        String recipeName = recipeResponseNew.getRecipeName();
+                        String cuisine= recipeResponseNew.getCuisine();
+                        Double rating = recipeResponseNew.getAverageRating();
+
+                        Recipe recipe = new Recipe(id, recipeName, cuisine, rating);
+
                         recipe.setId(recipeResponseNew.getId());
                         recipe.setRecipeName(recipeResponseNew.getRecipeName());
                         recipe.setCookingTime(recipeResponseNew.getCookingTime());

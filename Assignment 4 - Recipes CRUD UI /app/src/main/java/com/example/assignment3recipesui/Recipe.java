@@ -27,6 +27,15 @@ public class Recipe {
     @SerializedName("averageRating")
     private double averageRating;
 
+
+    // Constructor for editing a recipe
+    public Recipe(String id, String recipeName, String cuisine, double averageRating) {
+        this.id = id;
+        this.recipeName = recipeName;
+        this.cuisine = cuisine;
+        this.averageRating = averageRating;
+    }
+
     // Getters
     public String getId() { return id; }
     public String getRecipeName() { return recipeName; }

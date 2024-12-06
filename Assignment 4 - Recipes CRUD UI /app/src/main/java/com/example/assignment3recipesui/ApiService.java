@@ -30,8 +30,8 @@ public interface ApiService {
     @GET("/recipes/")
     Call<List<RecipeResponseNew>> getRecipes();
 
-    @GET("/recipes/{id}")
-    Call<RecipeResponseNew> getRecipeById(@Path("id") String id);
+//    @GET("/recipes/{id}")
+//    Call<RecipeResponseNew> getRecipeById(@Path("id") String id);
 
     @POST("/recipes/create")
     Call<RecipeResponseNew> createRecipe(@Body Recipe recipe);

@@ -82,9 +82,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d("LoginResponse", "Response body: " + response.body().toString());
-                    Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    if ("Login Successfull".equals(response.body().getMessage())) {
-                        TokenManager.saveToken(LoginActivity.this, response.body().getToken());
+
+                    String token = response.body().getToken(); // Retrieve the token from the response
+                    Log.d("Token", "Received token: " + token); // Log the token
+
+                    if (token != null && !token.isEmpty()) {
+                        TokenManager.saveToken(LoginActivity.this, token); // Save the token
+                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
