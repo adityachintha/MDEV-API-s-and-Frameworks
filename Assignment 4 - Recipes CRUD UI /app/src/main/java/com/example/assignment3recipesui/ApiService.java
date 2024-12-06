@@ -9,10 +9,12 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Path;
 import retrofit2.http.Body;
 
+
+
 public interface ApiService {
     // User APIs
     @POST("/user/register")
-    Call<RegisterResponse> registerUser(@Body RegisterRequest request);
+    Call<RegisterResponseNew> registerUser(@Body RegisterRequestNew request);
 
     @POST("/user/login")
     Call<LoginResponse> loginUser(@Body LoginRequest request);
@@ -23,16 +25,18 @@ public interface ApiService {
 
     //Recipe APIs
 
+    // Recipe APIs
     @GET("/recipes/")
-    Call<List<Recipe>> getRecipes();
+    Call<List<RecipeResponseNew>> getRecipes();
+
     @GET("/recipes/{id}")
-    Call<Recipe> getRecipeById(@Path("id") String id);
+    Call<RecipeResponseNew> getRecipeById(@Path("id") String id);
 
     @POST("/recipes/create")
-    Call<RecipeResponse> createRecipe(@Body Recipe recipe);
+    Call<RecipeResponseNew> createRecipe(@Body Recipe recipe);
 
     @PUT("/recipes/update/{id}")
-    Call<RecipeResponse> updateRecipe(@Path("id") String id, @Body Recipe recipe);
+    Call<RecipeResponseNew> updateRecipe(@Path("id") String id, @Body Recipe recipe);
 
     @DELETE("/recipes/delete/{id}")
     Call<Void> deleteRecipe(@Path("id") String id);
