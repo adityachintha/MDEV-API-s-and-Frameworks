@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,13 +24,37 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button addRecipeButton; // Declare the button
+    private Button logoutButton;    // Declare the button
     private RecyclerView recyclerView;
     private RecipeAdapter recipeAdapter;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize Add Recipe Button
+        addRecipeButton = findViewById(R.id.addRecipeButton);
+        addRecipeButton.setOnClickListener(v -> {
+            // Navigate to AddRecipeActivity
+            Intent intent = new Intent(MainActivity.this, AddRecipeActivity.class);
+            startActivity(intent);
+        });
+
+        // Initialize Logout Button
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(v -> {
+            // Clear the token and navigate to LoginActivity
+            TokenManager.clearToken(this);
+            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Close MainActivity
+        });
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
@@ -39,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Fetch Recipes
         fetchRecipes();
+    }
+
+    private final ActivityResultLauncher<Intent> editRecipeLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    fetchRecipes();
+                }
+            });
+
+    private void openEditRecipeActivity(Recipe recipe) {
+        Intent intent = new Intent(MainActivity.this, EditRecipesActivity.class);
+        intent.putExtra("recipeId", recipe.getId());
+        intent.putExtra("recipeName", recipe.getRecipeName());
+        intent.putExtra("cuisine", recipe.getCuisine());
+        intent.putExtra("rating", recipe.getAverageRating());
+        editRecipeLauncher.launch(intent);
     }
 
     private void fetchRecipes() {

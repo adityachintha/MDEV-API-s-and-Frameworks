@@ -3,6 +3,7 @@ package com.example.assignment3recipesui;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.DELETE;
@@ -34,11 +35,11 @@ public interface ApiService {
 //    Call<RecipeResponseNew> getRecipeById(@Path("id") String id);
 
     @POST("/recipes/create")
-    Call<RecipeResponseNew> createRecipe(@Body Recipe recipe);
+    Call<RecipeResponseNew> createRecipe(@Body Recipe recipe, @Header("Authorization") String token);
 
     @PUT("/recipes/update/{id}")
     Call<RecipeResponseNew> updateRecipe(@Path("id") String id, @Body Recipe recipe);
 
     @DELETE("/recipes/delete/{id}")
-    Call<Void> deleteRecipe(@Path("id") String id);
+    Call<Void> deleteRecipe(@Path("id") String id,  @Header("Authorization") String token);
 }

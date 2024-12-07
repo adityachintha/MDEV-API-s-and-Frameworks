@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.0.92:3000/";
+    private static final String BASE_URL = "https://mdev-api-s-and-frameworks-recipes-ui.onrender.com/";
     private static Retrofit retrofit;
 
     public static ApiService getApiService(Context context) {
@@ -29,7 +29,7 @@ public class RetrofitClient {
                         // Retrieve the token from TokenManager
                         String token = TokenManager.getToken(context);
                         if (token != null && !token.isEmpty()) {
-                            requestBuilder.addHeader("Authorization", "Bearer " + token);
+                            requestBuilder.addHeader("x-access-token", token);
                             Log.d("RetrofitClient", "Authorization token added: " + token);
                         } else {
                             Log.d("RetrofitClient", "No token found in TokenManager");

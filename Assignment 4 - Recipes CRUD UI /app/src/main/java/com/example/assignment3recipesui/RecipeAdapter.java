@@ -4,15 +4,21 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
@@ -48,6 +54,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             intent.putExtra("rating", recipe.getAverageRating());
             context.startActivity(intent);
         });
+
+        // Handle Delete Button Click
+        holder.deleteButton.setOnClickListener(v -> {
+            deleteRecipe(recipe.getId(), holder.getAdapterPosition());
+        });
     }
 
     @Override
@@ -62,6 +73,36 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         notifyDataSetChanged();
     }
 
+    // Delete Recipe from the list
+    private void deleteRecipe(String recipeId, int position) {
+        ApiService apiService = RetrofitClient.getApiService(context);
+
+        // Retrieve the token
+        String token = TokenManager.getToken(context);
+
+        Call<Void> call = apiService.deleteRecipe(recipeId, "Bearer " + token);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    recipes.remove(position);
+                    notifyItemRemoved(position);
+                    Toast.makeText(context, "Recipe deleted successfully!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Failed to delete recipe", Toast.LENGTH_SHORT).show();
+                    Log.e("Delete Error", "Response code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Delete Failure", t.getMessage());
+            }
+        });
+    }
+
+
     // ViewHolder for RecyclerView
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
 
@@ -69,6 +110,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         TextView cuisineTextView;
         TextView ratingTextView;
         Button EditButton;
+        Button deleteButton;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +119,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             cuisineTextView = itemView.findViewById(R.id.cuisine);
             ratingTextView = itemView.findViewById(R.id.rating);
             EditButton = itemView.findViewById(R.id.EditButton);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }

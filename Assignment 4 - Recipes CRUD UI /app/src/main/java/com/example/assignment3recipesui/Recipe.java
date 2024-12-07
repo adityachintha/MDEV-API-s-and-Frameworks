@@ -36,6 +36,7 @@ public class Recipe {
         this.averageRating = averageRating;
     }
 
+
     // Getters
     public String getId() { return id; }
     public String getRecipeName() { return recipeName; }
