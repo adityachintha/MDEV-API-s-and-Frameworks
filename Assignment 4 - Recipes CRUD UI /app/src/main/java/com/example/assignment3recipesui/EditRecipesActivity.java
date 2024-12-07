@@ -55,7 +55,7 @@ public class EditRecipesActivity extends AppCompatActivity {
     private void saveRecipe() {
         String updatedName = recipeNameInput.getText().toString();
         String updatedType = recipeTypeInput.getText().toString();
-        int updatedRating = (int) Math.round(Double.parseDouble(recipeRatingInput.getText().toString())); // Convert to integer
+        double updatedRating = Double.parseDouble(recipeRatingInput.getText().toString());
 
 
         // Create Recipe object for update
@@ -68,10 +68,18 @@ public class EditRecipesActivity extends AppCompatActivity {
         call.enqueue(new Callback<RecipeResponseNew>() {
             @Override
             public void onResponse(Call<RecipeResponseNew> call, Response<RecipeResponseNew> response) {
+                Log.d("API Response", "Status: " + response.code() + ", Message: " + response.message());
                 if (response.isSuccessful()) {
                     Toast.makeText(EditRecipesActivity.this, "Recipe updated successfully!", Toast.LENGTH_SHORT).show();
+
+                    // Indicate success and send a result back to MainActivity
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("action", "edited");
+                    setResult(RESULT_OK, resultIntent);
+
                     finish(); // Close EditRecipeActivity
                 } else {
+                    Log.e("API Error", "Error Body: " + response.errorBody().toString());
                     Toast.makeText(EditRecipesActivity.this, "Error updating recipe", Toast.LENGTH_SHORT).show();
                 }
             }
