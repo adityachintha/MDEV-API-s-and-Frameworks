@@ -96,6 +96,13 @@
             android:layout_height="wrap_content"
             android:text="Edit" />
 
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Delete" />
+
     </LinearLayout>
 
     <!-- Another Recipe Item can go here, repeat the structure as needed -->

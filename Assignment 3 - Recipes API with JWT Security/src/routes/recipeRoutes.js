@@ -19,7 +19,7 @@ router.get("/", recipeController.readRecipes);
 router.get("/:id", recipeController.findRecipeById);
 
 //Route to create a new recipes
-router.post("/create", verifyToken, recipeController.createNewrecipes);
+router.post("/create", recipeController.createNewrecipes);
 
 //Route to update a recipe
 router.put("/update/:id", verifyToken, recipeController.updateRecipe);
